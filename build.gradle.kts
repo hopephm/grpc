@@ -1,3 +1,5 @@
+val applicationPath = ":ui"
+
 plugins {
     val kotlinVersion = "2.1.0"
     val springBootVersion = "3.4.1"
@@ -44,5 +46,17 @@ subprojects {
 
         testImplementation("org.junit.jupiter:junit-jupiter")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
+    }
+
+    if (project.path.contains(applicationPath)) {
+        tasks {
+            bootJar { enabled = true }
+            jar { enabled = false }
+        }
+    } else {
+        tasks {
+            jar { enabled = true }
+            bootJar { enabled = false }
+        }
     }
 }
