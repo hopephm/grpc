@@ -8,7 +8,10 @@ include(
 
 makeProjectDir(rootProject, "subprojects")
 
-fun makeProjectDir(project: ProjectDescriptor, group: String) {
+fun makeProjectDir(
+    project: ProjectDescriptor,
+    group: String,
+) {
     project.children.forEach {
         println("$group -> ${it.name}")
 

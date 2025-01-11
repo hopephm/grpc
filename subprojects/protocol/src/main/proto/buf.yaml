@@ -1,0 +1,17 @@
+# see https://buf.build/docs/
+# buf configuration https://buf.build/docs/configuration/v2/buf-yaml
+version: v2
+modules:
+  - path: .
+    name: buf.build/hope/un-exist-repository
+lint:
+  use:
+    - BASIC
+    - FILE_LOWER_SNAKE_CASE
+    - PACKAGE_VERSION_SUFFIX
+    - SERVICE_SUFFIX
+  rpc_allow_google_protobuf_empty_requests: true
+  rpc_allow_google_protobuf_empty_responses: true
+breaking:
+  use:
+    - FILE

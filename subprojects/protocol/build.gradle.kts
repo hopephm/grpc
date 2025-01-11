@@ -2,6 +2,7 @@ import com.google.protobuf.gradle.id
 
 val grpcVersion: String by project
 val protoCompileVersion: String by project
+val jakartaAnnotationVersion: String by project
 
 /**
  * @see https://github.com/grpc/grpc-java
@@ -17,6 +18,7 @@ plugins {
 dependencies {
     api("io.grpc:grpc-protobuf:$grpcVersion")
     api("io.grpc:grpc-stub:$grpcVersion")
+    compileOnly("jakarta.annotation:jakarta.annotation-api:$jakartaAnnotationVersion")
 }
 
 protobuf {

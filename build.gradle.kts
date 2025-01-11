@@ -1,20 +1,28 @@
 val applicationPath = ":ui"
 
 plugins {
-    val kotlinVersion = "2.1.0"
+    val kotlinVersion = "1.9.25"
     val springBootVersion = "3.4.1"
+    val ktLintVersion = "12.1.1"
 
     id("org.springframework.boot") version springBootVersion
+    id("org.jlleitschuh.gradle.ktlint") version ktLintVersion
 
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
     kotlin("plugin.jpa") version kotlinVersion
-    kotlin("kapt") version kotlinVersion
+    kotlin("kapt") version kotlinVersion apply true
 }
 
 allprojects {
     repositories {
         mavenCentral()
+    }
+}
+
+ktlint {
+    filter {
+        exclude { it.file.absolutePath.contains("build/") }
     }
 }
 
@@ -40,6 +48,11 @@ subprojects {
         targetCompatibility = JavaVersion.VERSION_21
     }
 
+    tasks {
+        jar { enabled = true }
+        bootJar { enabled = false }
+    }
+
     dependencies {
         implementation(kotlin("reflect"))
         implementation("org.springframework.boot:spring-boot-starter")
@@ -60,3 +73,5 @@ subprojects {
         }
     }
 }
+
+tasks.bootJar.get().enabled = false
