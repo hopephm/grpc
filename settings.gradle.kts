@@ -2,6 +2,7 @@ rootProject.name = "grpc"
 
 include(
     "ui:grpc",
+    "util:protobuf",
     "protocol",
     "domain",
 )
